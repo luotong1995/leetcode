@@ -48,14 +48,27 @@ def frequencySort2(s: str) -> str:
     return res
 
 
+def frequencySort3(s: str) -> str:
+    f = {}
+    max_freq = 0
+    for item in s:
+        if item not in f:
+            f[item] = 1
+            max_freq = max(max_freq, 1)
+        else:
+            max_freq = max(max_freq, f[item] + 1)
+            f[item] += 1
+    a = [-1] * (max_freq + 1)
+    for k, v in f.items():
+        a[v] = k
+    r = ''
+    for i in range(max_freq, 0, -1):
+        if a[i] != -1:
+            r += a[i] * i
+    return r
+
+
 if __name__ == '__main__':
     # print(frequencySort('ccaaa'))
-    print(frequencySort2('ccaaa'))
-
-    l = [3, 5, 7, 2, -1, 0]
-    r = []
-    heapq.heapify(l)
-    while l:
-        val = heapq.heappop(l)
-        r.append(val)
-    print(r)
+    # print(frequencySort2('ccaaa'))
+    print(frequencySort3('ccaaa'))
