@@ -13,12 +13,13 @@ def ac(i, nums, tmp, res):
     for j in range(i, len(nums)):
         ac(j + 1, nums, tmp + [nums[j]], res)
 
+
 if __name__ == '__main__':
     a = [1, 2, 3, 4]
     res = []
     tl = []
     dfs(0, a, res, tl)
     print(res)
-    res = []
-    ac(0, a, [], res)
-    print(res)
+    # res = []
+    # ac(0, a, [], res)
+    # print(res)
