@@ -1,0 +1,4 @@
+
+def simple(nums):
+
+    pass
