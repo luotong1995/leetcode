@@ -49,7 +49,50 @@ def productExceptSelf(nums: List[int]) -> List[int]:
     return ans
 
 
+## 前缀和后缀的方法
+def productExceptSelf2(nums: List[int]) -> List[int]:
+    length = len(nums)
+    ans = [0] * length
+    left = [0] * length
+    right = [0] * length
+
+    left[0] = 1
+    for i in range(1, length):
+        left[i] = nums[i - 1] * left[i - 1]
+
+    right[length - 1] = 1
+    for i in reversed(range(length - 1)):
+        right[i] = right[i + 1] * nums[i + 1]
+
+    for i in range(length):
+        ans[i] = left[i] * right[i]
+
+    return ans
+
+
+# 用动态规划的思想来，不停的存储右边的元素
+def productExceptSelf3(nums: List[int]) -> List[int]:
+    length = len(nums)
+    answer = [0] * length
+
+    # answer[i] 表示索引 i 左侧所有元素的乘积
+    # 因为索引为 '0' 的元素左侧没有元素， 所以 answer[0] = 1
+    answer[0] = 1
+    for i in range(1, length):
+        answer[i] = nums[i - 1] * answer[i - 1]
+
+    # R 为右侧所有元素的乘积
+    # 刚开始右边没有元素，所以 R = 1
+    R = 1
+    for i in reversed(range(length)):
+        # 对于索引 i，左边的乘积为 answer[i]，右边的乘积为 R
+        answer[i] = answer[i] * R
+        # R 需要包含右边所有的乘积，所以计算下一个结果时需要将当前值乘到 R 上
+        R *= nums[i]
+
+    return answer
+
 if __name__ == '__main__':
     nums = [1, 2, 3, 4]
     nums = [-1, 1, 0, -3, 3]
-    print(productExceptSelf(nums))
+    print(productExceptSelf2(nums))
