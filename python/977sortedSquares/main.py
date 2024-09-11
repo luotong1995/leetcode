@@ -29,10 +29,6 @@ def sortedSquares(nums: List[int]) -> List[int]:
     return sorted([item ** 2 for item in nums])
 
 
-[-7, -3, 2, 3, 11]
-[49, 9, 4, 9, 121]
-
-
 # 请你设计时间复杂度为 O(n) 的算法解决本问题
 # 找到负数和正数，分别进行求解
 # 然后进行归并排序
