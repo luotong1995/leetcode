@@ -28,6 +28,7 @@ n == nums.length
 from typing import List
 
 
+# 暴力求解
 def findMaxAverage(nums: List[int], k: int) -> float:
     i = 0
     j = i + k
@@ -42,13 +43,16 @@ def findMaxAverage(nums: List[int], k: int) -> float:
     return ans
 
 
+
+
+# 定长滑动窗口
 def findMaxAverage2(nums: List[int], k: int) -> float:
-    c_sum = sum(nums[0:k])
-    max_sum = c_sum
-    for i in range(k, len(nums)):
-        c_sum = c_sum + nums[i] - nums[i - k]
-        max_sum = max(max_sum, c_sum)
-    return max_sum / k
+    ans = 0
+    c_sum = sum(nums[:k])
+    for i in range(k,len(nums)):
+        c_sum = c_sum + nums[i] - nums[i-k]
+        ans = max(ans, c_sum)
+    return ans / k
 
 
 if __name__ == '__main__':
