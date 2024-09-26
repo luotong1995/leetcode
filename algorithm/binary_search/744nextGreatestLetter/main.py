@@ -30,7 +30,8 @@ target 是一个小写字母
 
 
 思考：
-第一个大于target的下标,
+第一个大于target的下标：可以转换为`第一个大于等于 target+1 的下标` ，low_bound(target+1)
+继续使用>=的方法来进行求解
 '''
 
 
