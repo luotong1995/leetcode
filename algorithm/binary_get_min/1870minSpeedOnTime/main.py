@@ -47,6 +47,43 @@ hours 中，小数点后最多存在两位数字
 
 
 思考：
-
+题目已经给出了，答案不会超过107，最小边界为1，最大边界为10**7
+最小边界和最大边界中使用二分查找，找出第一个满足条件的数据，这里的条件是计算的总共的耗时<= hour
 
 '''
+
+from typing import List
+
+def get_total_time(speed, dist):
+    total_time = 0
+    for index, item in enumerate(dist):
+        if item%speed and index != len(dist) - 1:
+            total_time += (item//speed + 1)
+        else:
+            total_time += item/speed
+    return total_time
+
+
+
+def minSpeedOnTime(dist: List[int], hour: float) -> int:
+    left = 1
+    max_value = 10**7
+    right = max_value
+    while left <= right:
+        mid = (left + right) // 2
+        if get_total_time(mid, dist) > hour:
+            left = mid + 1
+        else:
+            right = mid - 1
+    if left > max_value:
+        return -1
+    return left
+
+dist = [1,3,2]
+hour = 2.7
+dist = [1,3,2]
+hour = 1.9
+hour = 6
+dist = [1,1,100000]
+hour = 2.01
+print(minSpeedOnTime(dist, hour))
