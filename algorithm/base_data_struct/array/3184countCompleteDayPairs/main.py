@@ -61,7 +61,3 @@ def countCompleteDayPairs2(hours: List[int]) -> int:
 hours = [12,12,30,24,24]
 hours = [72,48,24,3]
 print(countCompleteDayPairs2(hours))
-
-
-
-1
