@@ -56,7 +56,22 @@ def longestSubarray(nums: List[int]) -> int:
         ans = max(ans, right - left)
     return ans
 
-nums = [1,1,0,1]
-# nums =  [0,1,1,1,0,1,1,0,1]
-nums = [1,1,1]
+def longestSubarray2(nums: List[int]) -> int:
+    left = 0
+    zero_c = 0
+    ans = 0
+    for right in range(len(nums)):
+        if nums[right] == 0:
+            zero_c += 1
+            while zero_c > 1:
+                if nums[left] == 0:
+                    zero_c -= 1
+                left += 1
+        ans = max(ans, right - left)
+    return ans
+
+# nums = [1,1,0,1]
+nums =  [0,1,1,1,0,1,1,0,1]
+# nums = [1,1,1]
 print(longestSubarray(nums))
+print(longestSubarray2(nums))
