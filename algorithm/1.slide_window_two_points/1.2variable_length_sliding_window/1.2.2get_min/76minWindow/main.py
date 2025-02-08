@@ -39,6 +39,9 @@ s 和 t 由英文字母组成
 思考：
 还是用滑动窗口来求最小；
 还是按照固定RIGHT来不断移动left的位置，求出最小的window，当加入一个right的时候去判断，减去left能否满足当前的要求，如果能满足则left++，不能满足即为当前RIGHT情况的最小的window
+
+while left < len(s) and (s[left] not in t or cnt[s[left]] < 0)
+这里就是不断的移动left，条件就是left不能超过s的长度且s[left]不在t中可以直接left++，或者需要cnt[s[left]] < 0 (当前窗口已经存在s[left]了)
 然后更新最小值ans=min(right-left+1,ans)
 
 '''
